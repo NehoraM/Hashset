@@ -1,0 +1,85 @@
+nehora.moshe
+
+=============================
+=      File description     =
+=============================
+ClosedHashSet.java - class of a closed hash set
+CollectionFacadeSet.java - facade class to hold collections with function to turn it into a set
+OpenHashSetList.java - file that holds a wrapper class link for the open hash links
+OpenHashSet.java - class of a closed hash set
+SimpleHashSet.java - abstract class for hash sets to implements
+SimpleSetPerformanceAnalyzer.java - class function to hold the analyzer of running times of our program
+=============================
+=          Design           =
+=============================
+ClosedHashSet -
+    the advantage of it over Open Hashset is that i dont need to hold Objects and only need to
+    hold the Strings themselves.
+
+CollectionFacadeSet -
+    i created in a way to use the functionality of collection while making sure that is a set
+
+OpenHashSetList -
+    is our way of holding a linked list to use it for the open hashing
+
+OpenHashSet -
+    the advantage of it over a closed hash set is that if two objects collied with the same hash a new calcualtion does
+    not need to be done since its gonna be in that location somewhere on a list
+
+SimpleHashSet -
+    just keeps implements basic things that are in common for every type of hash set
+
+SimpleSetPerformanceAnalyzer -
+    analizes the functions based on command line arguments
+
+
+=============================
+=  Implementation details   =
+=============================
+ClosedHashSet -
+    a closed hash set the implements the SimpleHashSet
+    In this hash set we dealing with the situation that teo or more different element has the same hasCode,
+    then, if the first that enter to the set deleted, when we look for the second we can think the second not
+    exist (we see null) therefore I implemented a string that will indicate that the location was deleted and
+     anytime i delete object I put this string in the array. then, we can know if an element was there before
+     and deleted and we should keep look for the (second) element.
+
+CollectionFacadeSet -
+
+    there advantage that all objects in it are of type collection because the collections functions only
+     changing some of them to keep it a set
+
+OpenHashSetList -
+    i did not want to extend this as part of CollectionFacadeSet due to the fact that
+    every time that i needed to resize i would need to initialize new linked lists in addition to
+    initializing an array of OpenHashingLinks therefore i created a class that hold an object with a
+    linked list already initialized and uses the advantage the facade gives us to reuse code
+
+OpenHashSet -
+    the OpenHashSet implements the SimpleHashSet
+    i Stored all the elements in an array of OpenHashSetList therefore when addition
+    was needed to get done it was added to one of the lists held by each OpenHashingLink
+
+SimpleHashSet -
+    the OpenHashSet implements the SimpleSet
+    only sets basic things used in both of the hashsets like clamp and calculates in the load factor
+    will be to much or to little with addition and subtraction
+
+SimpleSetPerformanceAnalyzer -
+    the class reads command line arguments and runs the aproriate test based on the input
+
+
+=============================
+=    Answers to questions   =
+=============================
+the analysis in depth -
+OpenHashSet and ClosedHashSets bad result time for for data1 test had to deal with the fact that all the elements
+were needed to be put in the same place. for open hash that meant that every time i needed to add i needed to check the
+whole linked list every single time in that hashings location and only then return that its not there costing almost
+O(n) as for closed hash we would have to keep jumping from location to the next to check if it was free which can also
+almost be O(n)
+HashSet's performance was the most impressive among the other structures which I chose to
+compare. HashSet was the fastest in making the addition (even of data1) and its search performance is very
+fast. I was very surprised to discover the performance results, because I tried to pay attention on shortening
+the running time in each of the functions I implement as much as I can, and even though HashSet still got the
+best performance.
